@@ -146,6 +146,22 @@
 				}
 			}
 
+			//TR start
+			$trimmedUrl = trim($url, '/');
+			$trimmedPath = trim($path, '/');
+			if ($trimmedUrl == $trimmedPath){
+			
+				$query404 = "
+				Select p.handle
+				From sym_pages_types as a
+				Inner Join sym_pages as p on a.page_id = p.id
+				Where a.type = 404";
+				
+				$result404 = Symphony::Database()->fetch($query404);
+				$path = "/" . $result404[0]['handle'];
+			}
+			//TR end
+			
 			return (string) trim($path.'/'.$url_query.$url_hash, '/');
 		}
 

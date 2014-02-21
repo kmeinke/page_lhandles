@@ -147,7 +147,7 @@
 			}
 
 			//TR start
-			$trimmedUrl = trim($url, '/');
+			/*$trimmedUrl = trim($url, '/');
 			$trimmedPath = trim($path, '/');
 			if ($trimmedUrl == $trimmedPath){
 			
@@ -159,7 +159,7 @@
 				
 				$result404 = Symphony::Database()->fetch($query404);
 				$path = "/" . $result404[0]['handle'];
-			}
+			}*/
 			//TR end
 			
 			return (string) trim($path.'/'.$url_query.$url_hash, '/');

@@ -147,9 +147,16 @@
 			}
 
 			//TR start
-			/*$trimmedUrl = trim($url, '/');
-			$trimmedPath = trim($path, '/');
-			if ($trimmedUrl == $trimmedPath){
+			$trimmedUrl = trim($url, '/');
+			
+			$queryHandle = "
+			Select handle
+			From sym_pages
+			Where handle = '$trimmedUrl'";
+			
+			$resultHandle = Symphony::Database()->fetch($queryHandle);
+			
+			if ($trimmedUrl != "" AND $trimmedUrl == $resultHandle[0]['handle'] ){
 			
 				$query404 = "
 				Select p.handle
@@ -159,7 +166,7 @@
 				
 				$result404 = Symphony::Database()->fetch($query404);
 				$path = "/" . $result404[0]['handle'];
-			}*/
+			}
 			//TR end
 			
 			return (string) trim($path.'/'.$url_query.$url_hash, '/');
